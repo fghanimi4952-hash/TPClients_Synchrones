@@ -258,47 +258,6 @@ curl http://localhost:8080/actuator/health
 3. Configurer Prometheus pour scraper
 4. Visualiser dans Grafana
 
-##  Résultats Attendus
-
-### Tableau 1 : Performance (Eureka)
-
-| Méthode | Temps moyen (ms) | Débit (req/s) | P95 (ms) |
-|---------|------------------|---------------|----------|
-| RestTemplate | | | |
-| Feign | | | |
-| WebClient | | | |
-
-### Tableau 2 : Performance (Consul)
-
-| Méthode | Temps moyen (ms) | Débit (req/s) | P95 (ms) |
-|---------|------------------|---------------|----------|
-| RestTemplate | | | |
-| Feign | | | |
-| WebClient | | | |
-
-### Tableau 3 : CPU / Mémoire
-
-| Méthode | CPU% (100 req/s) | RAM (MB) |
-|---------|------------------|----------|
-| RestTemplate | | |
-| Feign | | |
-| WebClient | | |
-
-### Tableau 4 : Résilience
-
-| Scénario | RestTemplate | Feign | WebClient |
-|----------|-------------|-------|-----------|
-| Panne Service Voiture | | | |
-| Panne Discovery | | | |
-
-### Tableau 5 : Simplicité
-
-| Méthode | Configuration | Lignes de code | Complexité |
-|---------|--------------|----------------|------------|
-| RestTemplate | | | |
-| Feign | | | |
-| WebClient | | | |
-
 ##  Analyse et Discussion
 
 ### Points d'analyse obligatoires
