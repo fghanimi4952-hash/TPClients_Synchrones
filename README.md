@@ -306,4 +306,4 @@ curl http://localhost:8080/actuator/health
 - [Netflix Eureka](https://github.com/Netflix/eureka)
 - [HashiCorp Consul](https://www.consul.io/)
 
-## ⚠️ Notes Importantes
+
