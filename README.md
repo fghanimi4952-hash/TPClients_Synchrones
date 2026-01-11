@@ -1,15 +1,15 @@
 # TP : Clients Synchrones (RestTemplate vs Feign vs WebClient) avec Eureka et Consul
 
-## 📋 Objectifs pédagogiques
+##  Objectifs pédagogiques
 
 À la fin du lab, vous serez capable de :
-- ✅ Implémenter deux microservices communiquant synchroniquement
-- ✅ Configurer la découverte de services avec **Eureka** et avec **Consul**
-- ✅ Implémenter 3 clients HTTP côté Service Client : **RestTemplate**, **Feign**, **WebClient**
-- ✅ Réaliser des tests de performance (latence / débit) et collecter des métriques
-- ✅ Tester la résilience (panne service voiture, panne discovery, etc.) et analyser les résultats
+-  Implémenter deux microservices communiquant synchroniquement
+-  Configurer la découverte de services avec **Eureka** et avec **Consul**
+-  Implémenter 3 clients HTTP côté Service Client : **RestTemplate**, **Feign**, **WebClient**
+-  Réaliser des tests de performance (latence / débit) et collecter des métriques
+-  Tester la résilience (panne service voiture, panne discovery, etc.) et analyser les résultats
 
-## 🏗️ Architecture
+##  Architecture
 
 ```
 ┌─────────────────┐
@@ -40,7 +40,7 @@
 - **Eureka Server** (port 8761) : Registre de services (mode Eureka)
 - **Consul** (port 8500) : Registre de services (mode Consul)
 
-## 🚀 Installation et Démarrage
+##  Installation et Démarrage
 
 ### Prérequis
 - Java 17+
@@ -79,7 +79,7 @@ mvn spring-boot:run
 java -jar target/service-voiture-1.0.0.jar
 ```
 
-✅ Test : http://localhost:8081/api/cars/byClient/1
+ Test : http://localhost:8081/api/cars/byClient/1
 
 #### 2.3 Lancer Service Client
 
@@ -90,7 +90,7 @@ mvn spring-boot:run
 java -jar target/service-client-1.0.0.jar
 ```
 
-✅ Test :
+ Test :
 - http://localhost:8080/api/clients/1/car/rest
 - http://localhost:8080/api/clients/1/car/feign
 - http://localhost:8080/api/clients/1/car/webclient
@@ -150,7 +150,7 @@ cd service-client
 mvn spring-boot:run -Dspring-boot.run.profiles=consul
 ```
 
-## 🧪 Tests de Performance
+##  Tests de Performance
 
 ### Outils recommandés
 - **JMeter** : Tests de charge
@@ -197,7 +197,7 @@ Créer un plan JMeter avec :
 3. View Results Tree (débug)
 4. Summary Report (statistiques)
 
-## 📊 Tests de Résilience
+##  Tests de Résilience
 
 ### Test 1 : Panne du Service Voiture
 
@@ -225,7 +225,7 @@ Créer un plan JMeter avec :
 2. Relancer Service Client
 3. Vérifier la re-registration dans discovery
 
-## 📈 Collecte de Métriques
+##  Collecte de Métriques
 
 ### CPU / Mémoire
 
@@ -258,7 +258,7 @@ curl http://localhost:8080/actuator/health
 3. Configurer Prometheus pour scraper
 4. Visualiser dans Grafana
 
-## 📝 Résultats Attendus
+##  Résultats Attendus
 
 ### Tableau 1 : Performance (Eureka)
 
@@ -299,7 +299,7 @@ curl http://localhost:8080/actuator/health
 | Feign | | | |
 | WebClient | | | |
 
-## 🔍 Analyse et Discussion
+##  Analyse et Discussion
 
 ### Points d'analyse obligatoires
 
@@ -325,58 +325,22 @@ curl http://localhost:8080/actuator/health
    - Temps de reprise
    - Comportement de chaque client
 
-## 📦 Livrables
+##  Livrables
 
-1. ✅ **Code des 2 services** (client + voiture)
-2. ✅ **Preuve d'enregistrement** (capture Eureka/Consul)
-3. ✅ **Résultats de tests** (latence, débit, CPU/RAM)
-4. ✅ **Analyse comparée** (1-2 pages)
+1.  **Code des 2 services** (client + voiture)
+2.  **Preuve d'enregistrement** (capture Eureka/Consul)
+3.  **Résultats de tests** (latence, débit, CPU/RAM)
+4.  **Analyse comparée** (1-2 pages)
 
-## 🛠️ Structure du Projet
+##  Structure du Projet
 
-```
-.
-├── service-voiture/          # Microservice Voiture
-│   ├── src/
-│   │   ├── main/
-│   │   │   ├── java/
-│   │   │   │   └── com/mliaedu/voiture/
-│   │   │   │       ├── ServiceVoitureApplication.java
-│   │   │   │       ├── controller/
-│   │   │   │       ├── model/
-│   │   │   │       └── service/
-│   │   │   └── resources/
-│   │   │       ├── application.yml
-│   │   │       └── application-consul.yml
-│   └── pom.xml
-├── service-client/           # Microservice Client
-│   ├── src/
-│   │   ├── main/
-│   │   │   ├── java/
-│   │   │   │   └── com/mliaedu/client/
-│   │   │   │       ├── ServiceClientApplication.java
-│   │   │   │       ├── controller/
-│   │   │   │       ├── service/
-│   │   │   │       ├── config/
-│   │   │   │       ├── feign/
-│   │   │   │       └── model/
-│   │   │   └── resources/
-│   │   │       ├── application.yml
-│   │   │       └── application-consul.yml
-│   └── pom.xml
-├── eureka-server/           # Serveur Eureka
-│   ├── src/
-│   │   ├── main/
-│   │   │   ├── java/
-│   │   │   │   └── com/mliaedu/eureka/
-│   │   │   │       └── EurekaServerApplication.java
-│   │   │   └── resources/
-│   │   │       └── application.yml
-│   └── pom.xml
-└── README.md                # Ce fichier
-```
+<img width="495" height="723" alt="Capture d’écran 2026-01-11 à 13 42 24" src="https://github.com/user-attachments/assets/a52fc209-d0ab-4139-a752-0a4c83949672" />
 
-## 📚 Ressources
+
+
+
+
+##  Ressources
 
 - [Spring Cloud OpenFeign](https://spring.io/projects/spring-cloud-openfeign)
 - [Spring WebClient](https://docs.spring.io/spring-framework/reference/web/webflux-webclient.html)
@@ -384,38 +348,3 @@ curl http://localhost:8080/actuator/health
 - [HashiCorp Consul](https://www.consul.io/)
 
 ## ⚠️ Notes Importantes
-
-1. **Délai artificiel** : Le Service Voiture inclut un délai de 20ms pour rendre les différences entre clients plus observables. Ce délai est optionnel et peut être supprimé.
-
-2. **WebClient en mode synchrone** : Dans ce TP, WebClient est utilisé en mode synchrone via `block()` pour comparer à armes égales avec RestTemplate et Feign. En production, WebClient est généralement utilisé en mode non-bloquant.
-
-3. **Base de données en mémoire** : Pour éviter que MySQL n'influence les mesures, on utilise une Map en mémoire. C'est suffisant pour comparer les clients HTTP.
-
-4. **Ordre de démarrage** : Démarrer Eureka/Consul **avant** les services. Sinon, l'enregistrement peut échouer ou être retardé.
-
-## 🐛 Dépannage
-
-### Problème : Service non enregistré dans Eureka/Consul
-
-- Vérifier que Eureka/Consul est démarré
-- Vérifier la configuration dans `application.yml`
-- Vérifier les logs pour les erreurs de connexion
-
-### Problème : Erreur 404 lors de l'appel par nom logique
-
-- Vérifier que le service est bien enregistré
-- Vérifier le nom du service dans `application.yml`
-- Vérifier la présence de `@LoadBalanced` pour RestTemplate/WebClient
-
-### Problème : Port déjà utilisé
-
-- Changer le port dans `application.yml`
-- Ou arrêter le processus utilisant le port
-
-## 📧 Contact
-
-Pour toute question, contactez votre enseignant ou consultez la documentation Spring Cloud.
-
----
-
-**Bon TP ! 🚀**
