@@ -1,0 +1,32 @@
+# Configuration alternative pour Consul
+# Pour utiliser cette configuration :
+# 1. Décommenter la dépendance Consul dans pom.xml
+# 2. Commenter la dépendance Eureka dans pom.xml
+# 3. Désactiver @EnableEurekaClient dans ServiceVoitureApplication.java
+# 4. Lancer : java -jar service-voiture.jar --spring.profiles.active=consul
+
+server:
+  port: 8081
+
+spring:
+  application:
+    name: SERVICE-VOITURE
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        enabled: true
+        service-name: SERVICE-VOITURE
+        health-check-path: /actuator/health
+        health-check-interval: 10s
+
+# Configuration Actuator
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: always

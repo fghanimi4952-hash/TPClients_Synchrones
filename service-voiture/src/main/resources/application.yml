@@ -1,0 +1,45 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: SERVICE-VOITURE  # Nom logique du service pour la découverte
+
+# Configuration Actuator - Expose les endpoints de santé
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: always
+
+# Configuration Eureka (mode par défaut)
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/  # URL du serveur Eureka
+    register-with-eureka: true  # S'enregistrer auprès d'Eureka
+    fetch-registry: true  # Récupérer le registre des services
+  instance:
+    hostname: localhost
+    prefer-ip-address: true
+
+# Configuration Consul (décommenter pour utiliser Consul à la place d'Eureka)
+# Pour utiliser Consul :
+# 1. Décommenter cette section
+# 2. Commenter la section Eureka
+# 3. Décommenter la dépendance Consul dans pom.xml
+# 4. Désactiver Eureka dans la classe principale
+#
+# spring:
+#   cloud:
+#     consul:
+#       host: localhost
+#       port: 8500
+#       discovery:
+#         enabled: true
+#         service-name: SERVICE-VOITURE
+#         health-check-path: /actuator/health
+#         health-check-interval: 10s
